@@ -100,7 +100,7 @@ export function loadFishes(scene) {
     }
 
     // --- 単体の魚の設定 ---
-    const numFishes = Math.floor(Math.random() * 3) + 2; // 2〜4匹
+    const numFishes = Math.floor(Math.random() * 3) + 3 // 3〜5匹
 
     for (let i = 0; i < numFishes; i++) {
         const posX = -15 + Math.random() * 30; // -15 〜 15
@@ -130,7 +130,7 @@ export function loadFishes(scene) {
                 const wrapper = new TransformNode("fisheWrapper_" + i, scene);
                 rootNode.setParent(wrapper);
 
-                wrapper.scaling = new Vector3(30, 30, 30);
+                wrapper.scaling = new Vector3(35, 35, 35);
                 wrapper.position = new Vector3(posX, posY, posZ);
                 wrapper.rotation.y = Math.random() * Math.PI * 2;
 
@@ -303,6 +303,60 @@ export function loadFishes(scene) {
                     wrapper.position.z = posZ + Math.cos(currentAngle) * radius;
 
                     // 進行方向が変わると魚の頭の向きも逆にする必要があるため、Math.sign(turnSpeed) で向きを調整
+                    wrapper.rotation.y = currentAngle + Math.sign(turnSpeed) * (Math.PI / 2);
+                });
+            });
+        }, delayMs);
+    }
+
+    // -- 新しい魚の設定（blue_tang_fish_paracanthurus_hepatus.glb） ---
+    const numBlueTangs = Math.floor(Math.random() * 3) + 3; // 3〜5匹
+
+    for (let i = 0; i < numBlueTangs; i++) {
+        const radius = 60 + Math.random() * 20; // 半径 70〜90
+        const posY = -15 + Math.random() * 10; // 深さの設定 (-15〜-5)
+
+        const direction = Math.random() < 0.5 ? 1 : -1; // ランダムな旋回方向
+        const moveSpeed = 0.08 + Math.random() * 0.04; // 0.08〜0.12 (カメラより速く動くように修正)
+        const turnSpeed = (moveSpeed / radius) * direction; // 半径に合わせてバランスをとる
+
+        const delayMs = 500 + Math.random() * 1000; // 0.5〜1.5秒でランダム
+
+        setTimeout(() => {
+            SceneLoader.ImportMeshAsync("", "./", "blue_tang_fish_paracanthurus_hepatus.glb", scene).then((result) => {
+                const rootNode = result.meshes[0];
+
+                if (rootNode.rotationQuaternion) {
+                    rootNode.rotationQuaternion = null;
+                }
+
+                // 魚が真横を向いてしまうため、向きを0に調整（もし後ろ向きに泳ぐ場合は Math.PI に変更してください）
+                rootNode.rotation.y = Math.PI;
+
+                const wrapper = new TransformNode("blueTangWrapper_" + i, scene);
+                rootNode.setParent(wrapper);
+
+                wrapper.scaling = new Vector3(0.4, .4, 0.4); // スケールをとりあえず5に設定
+                wrapper.position.y = posY;
+
+                if (result.animationGroups && result.animationGroups.length > 0) {
+                    const animSpeed = 0.8 + Math.random() * 0.4; // アニメーション速度をランダムに
+                    result.animationGroups.forEach(group => {
+                        group.speedRatio = animSpeed;
+                        group.play(true);
+                    });
+                }
+
+                let currentAngle = Math.random() * Math.PI * 2; // 初期角度
+
+                scene.onBeforeRenderObservable.add(() => {
+                    currentAngle += turnSpeed;
+
+                    // 中心 (0, 0) からの旋回
+                    wrapper.position.x = Math.sin(currentAngle) * radius;
+                    wrapper.position.z = Math.cos(currentAngle) * radius;
+
+                    // 進行方向に向ける
                     wrapper.rotation.y = currentAngle + Math.sign(turnSpeed) * (Math.PI / 2);
                 });
             });
