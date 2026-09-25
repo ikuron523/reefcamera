@@ -22,7 +22,7 @@ function smoothNoise2D(x, y) {
 }
 
 function fbm(x, y, octaves = 4) {
-    let total = 0, frequency = 1, amplitude = 15, maxValue = 0;
+    let total = 0, frequency = 1, amplitude = 40, maxValue = 0;
     for (let i = 0; i < octaves; i++) {
         total += smoothNoise2D(x * frequency, y * frequency) * amplitude;
         maxValue += amplitude;
@@ -42,11 +42,11 @@ export function setupEnvironment(scene) {
 
     // --- 光源の設定 ---
     const hemiLight = new HemisphericLight('hemiLight', new Vector3(0, 1, 0), scene);
-    hemiLight.intensity = 1.0;
+    hemiLight.intensity = 1.3;
     hemiLight.diffuse = new Color3(0.7, 0.9, 1.0);
     hemiLight.groundColor = new Color3(0.0, 0.0, 0.0);
 
-    const sunLight = new PointLight('sunLight', new Vector3(30, 10, 30), scene);
+    const sunLight = new PointLight('sunLight', new Vector3(30, 15, 30), scene);
     sunLight.intensity = 0.8;
     sunLight.diffuse = new Color3(1.0, 1.0, 0.9);
     sunLight.specular = new Color3(1.0, 1.0, 1.0);

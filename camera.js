@@ -15,10 +15,13 @@ export function setupCamera(scene) {
         // 深さ-15を基準に、Y軸にも少し揺らして浮遊感を出す
         camera.position.y = -15 + Math.sin(alpha * 0.5) * 3;
 
-        // 常に中心のY座標方向を向く
         const targetX = 0;
         const targetZ = 0;
-        const targetY = camera.position.y;
+        
+        // 進行方向（上下の移動速度）に合わせて視線をわずかに上下に傾ける
+        // Y座標の移動が sin(alpha * 0.5) なので、その進行方向（微分）は cos(alpha * 0.5) になります
+        const tilt = Math.cos(alpha * 0.5) * 5; 
+        const targetY = camera.position.y + tilt;
         camera.setTarget(new Vector3(targetX, targetY, targetZ));
 
         // カメラ位置情報のUI更新
