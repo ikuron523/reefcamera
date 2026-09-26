@@ -10,7 +10,7 @@ export function loadShellfishes(scene) {
         const posZ = -200 + Math.random() * 400;
 
         // y軸は -33〜-30 でランダム (海底付近)
-        const posY = -39 + Math.random() * 3;
+        const posY = -41 + Math.random() * 3;
 
         SceneLoader.ImportMeshAsync("", "./", "sea_snail_shell.glb", scene).then((result) => {
             const rootNode = result.meshes[0];
@@ -41,7 +41,7 @@ export function loadShellfishes(scene) {
         // sea_snail_shell と同じ配置条件
         const posX = -200 + Math.random() * 400;
         const posZ = -200 + Math.random() * 400;
-        const posY = -36 + Math.random() * 5;
+        const posY = -41 + Math.random() * 3;
 
         SceneLoader.ImportMeshAsync("", "./", "snail_shell.glb", scene).then((result) => {
             const rootNode = result.meshes[0];
@@ -111,7 +111,7 @@ export function loadShellfishes(scene) {
         // sea_snail_shell.glb と同じ配置条件
         const posX = -200 + Math.random() * 400;
         const posZ = -200 + Math.random() * 400;
-        const posY = -30 + Math.random() * 5;
+        const posY = -34 + Math.random() * 2;
 
         SceneLoader.ImportMeshAsync("", "./", "clam_shell.glb", scene).then((result) => {
             const rootNode = result.meshes[0];
@@ -135,13 +135,13 @@ export function loadShellfishes(scene) {
     }
 
     // --- cc0__japanese_baking_scallop_p._albicans.glb の設定 ---
-    const numScallops = Math.floor(Math.random() * 6) + 15; // 15〜20個
+    const numScallops = Math.floor(Math.random() * 6) + 20; // 15〜20個
 
     for (let i = 0; i < numScallops; i++) {
         // clam_shell.glb と同じ配置条件
         const posX = -200 + Math.random() * 400;
         const posZ = -200 + Math.random() * 400;
-        const posY = -34 + Math.random() * 5;
+        const posY = -34 + Math.random() * 2;
 
         SceneLoader.ImportMeshAsync("", "./", "cc0__japanese_baking_scallop_p._albicans.glb", scene).then((result) => {
             const rootNode = result.meshes[0];

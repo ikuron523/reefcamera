@@ -11,11 +11,12 @@
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "vite": "^5.0.0"
   },
   "dependencies": {
     "@babylonjs/core": "^7.0.0",
+    "@babylonjs/inspector": "^7.54.3",
     "@babylonjs/loaders": "^7.0.0"
   }
 }

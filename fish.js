@@ -25,7 +25,7 @@ export function loadFishes(scene) {
         setTimeout(() => {
             SceneLoader.ImportMeshAsync("", "./", "school_of_fish.glb", scene).then((result) => {
                 const rootNode = result.meshes[0];
-                rootNode.scaling = new Vector3(1, 1, 1);
+                rootNode.scaling = new Vector3(0.8, 0.8, 0.8);
                 rootNode.position = new Vector3(posX, posY, posZ);
 
                 if (i > 0) {
@@ -336,7 +336,7 @@ export function loadFishes(scene) {
                 const wrapper = new TransformNode("blueTangWrapper_" + i, scene);
                 rootNode.setParent(wrapper);
 
-                wrapper.scaling = new Vector3(0.4, .4, 0.4); // スケールをとりあえず5に設定
+                wrapper.scaling = new Vector3(0.2, 0.2, 0.2); // スケールを 0.2 に設定
                 wrapper.position.y = posY;
 
                 if (result.animationGroups && result.animationGroups.length > 0) {
@@ -563,7 +563,7 @@ export function loadFishes(scene) {
 
             // 出現タイミングを0.5〜1秒(500〜1000ms)ずつ遅らせることで、
             // 同じスタート角度(initialAngle)でも重ならずに前後に列を作る
-            const delayMs = i * (1000 + Math.random() * 1000);
+            const delayMs = i * (1500 + Math.random() * 1500);
 
             setTimeout(() => {
                 SceneLoader.ImportMeshAsync("", "./", "model_101a_-_adult_common_dolphin.glb", scene).then((result) => {
@@ -579,8 +579,8 @@ export function loadFishes(scene) {
                     const wrapper = new TransformNode("dolphinWrapper_" + Math.random(), scene);
                     rootNode.setParent(wrapper);
 
-                    // スケールは 10 に設定
-                    wrapper.scaling = new Vector3(10, 10, 10);
+                    // スケールは 14 に設定
+                    wrapper.scaling = new Vector3(14, 14, 14);
                     wrapper.position = new Vector3(posX, posY, posZ);
                     wrapper.rotation.y = Math.random() * Math.PI * 2;
 

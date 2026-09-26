@@ -3,8 +3,9 @@ import '@babylonjs/loaders'; // .glbサポート用
 
 import { setupEnvironment } from './environment.js';
 import { setupCamera } from './camera.js';
-import { loadFishes } from './fish.js';
+import { loadCorals } from './coral.js';
 import { loadShellfishes } from './shellfish.js';
+import { loadFishes } from './fish.js';
 
 const canvas = document.getElementById('renderCanvas');
 const engine = new Engine(canvas, true);
@@ -14,8 +15,9 @@ const createScene = function () {
 
     setupEnvironment(scene);
     setupCamera(scene);
-    loadFishes(scene);
+    loadCorals(scene);
     loadShellfishes(scene);
+    loadFishes(scene);
 
     return scene;
 };
