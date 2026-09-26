@@ -77,7 +77,7 @@ export function setupEnvironment(scene) {
     const water = MeshBuilder.CreateGround('water', { width: 500, height: 500, subdivisions: 64 }, scene);
     water.position.y = 0;
     const waterMat = new StandardMaterial('waterMat', scene);
-    waterMat.diffuseColor = new Color3(0.1, 0.3, 0.5);
+    waterMat.diffuseColor = new Color3(0.1, 0.3, 0.6);
     waterMat.alpha = 0.5;
     waterMat.backFaceCulling = false;
     water.material = waterMat;
@@ -90,7 +90,7 @@ export function setupEnvironment(scene) {
 
         for (let p = 0; p < positions.length; p += 3) {
             const x = positions[p];
-            positions[p + 1] = Math.sin(x * 0.15 + waveTime) * 0.5;
+            positions[p + 1] = Math.sin(x * 0.15 + waveTime) * 0.6;
         }
         water.updateVerticesData(VertexBuffer.PositionKind, positions);
         water.createNormals(false);

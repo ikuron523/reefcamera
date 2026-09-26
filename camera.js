@@ -18,9 +18,13 @@ export function setupCamera(scene) {
         const targetX = 0;
         const targetZ = 0;
         
-        // 進行方向（上下の移動速度）に合わせて視線をわずかに上下に傾ける
-        // Y座標の移動が sin(alpha * 0.5) なので、その進行方向（微分）は cos(alpha * 0.5) になります
-        const tilt = Math.cos(alpha * 0.5) * 5; 
+        // Y軸のベース位置（-15）からの変位
+        const yOffset = Math.sin(alpha * 0.5) * 3;
+        
+        // y軸位置（変位）に比例して視線をわずかに上下に傾ける
+        // 高い位置（yOffsetがプラス）にいるときは少し上を、低い位置にいるときは少し下を向く
+        // 水面や地面ばかりが映らないよう、係数（1.5）でわずかな傾きに抑えています
+        const tilt = yOffset * 1.5; 
         const targetY = camera.position.y + tilt;
         camera.setTarget(new Vector3(targetX, targetY, targetZ));
 
