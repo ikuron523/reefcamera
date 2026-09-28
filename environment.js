@@ -70,7 +70,7 @@ export function setupEnvironment(scene) {
     }
 
     const groundMat = new StandardMaterial('groundMat', scene);
-    groundMat.diffuseColor = new Color3(0.3, 0.3, 0.3);
+    groundMat.diffuseColor = new Color3(0.4, 0.4, 0.4);
     ground.material = groundMat;
 
     // --- 水面の設定 ---
@@ -90,7 +90,7 @@ export function setupEnvironment(scene) {
 
         for (let p = 0; p < positions.length; p += 3) {
             const x = positions[p];
-            positions[p + 1] = Math.sin(x * 0.15 + waveTime) * 0.6;
+            positions[p + 1] = Math.sin(x * 0.15 + waveTime) * 0.7;
         }
         water.updateVerticesData(VertexBuffer.PositionKind, positions);
         water.createNormals(false);
