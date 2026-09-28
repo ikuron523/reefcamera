@@ -28,11 +28,7 @@ export function setupCamera(scene) {
         const targetY = camera.position.y + tilt;
         camera.setTarget(new Vector3(targetX, targetY, targetZ));
 
-        // カメラ位置情報のUI更新
-        const infoDiv = document.getElementById('cameraInfo');
-        if (infoDiv) {
-            infoDiv.innerText = `Cam Pos: x=${camera.position.x.toFixed(1)}, y=${camera.position.y.toFixed(1)}, z=${camera.position.z.toFixed(1)}\nTarget: x=${targetX.toFixed(1)}, y=${targetY.toFixed(1)}, z=${targetZ.toFixed(1)}`;
-        }
+
     });
 
     return camera;
