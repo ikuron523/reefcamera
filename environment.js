@@ -1,16 +1,16 @@
 import { Color3, Vector3, HemisphericLight, PointLight, MeshBuilder, StandardMaterial, VertexBuffer, Scene } from '@babylonjs/core';
 
-// --- パーリンノイズ風の地形生成用関数（Value Noise + fBm） ---
+// --- Functions for generating Perlin noise-like terrain (Value Noise + fBm) ---
 const noiseTable = Array.from({ length: 256 }, () => Math.random());
 function smoothNoise2D(x, y) {
     const xi = Math.floor(x);
     const yi = Math.floor(y);
     const xf = x - xi;
     const yf = y - yi;
-    const fade = t => t * t * (3 - 2 * t); // 滑らかな補間
+    const fade = t => t * t * (3 - 2 * t); // Smooth interpolation
     const u = fade(xf);
     const v = fade(yf);
-    // マイナスの座標でも正しく配列を参照できるように調整
+    // Adjusted to handle negative coordinates properly
     const hash = (i, j) => noiseTable[(Math.abs(i) + Math.abs(j) * 57) % 256];
     const aa = hash(xi, yi);
     const ba = hash(xi + 1, yi);
@@ -29,18 +29,18 @@ function fbm(x, y, octaves = 4) {
         amplitude *= 0.5;
         frequency *= 2.0;
     }
-    return total / maxValue; // 0.0 〜 1.0
+    return total / maxValue; // 0.0 to 1.0
 }
 
 export function setupEnvironment(scene) {
-    // 明るいサンゴ礁（リーフ）らしいフォグ（霧）の設定
+    // Fog settings to simulate a bright coral reef
     scene.fogMode = Scene.FOGMODE_LINEAR;
     scene.fogColor = new Color3(0.2, 0.6, 0.8);
     scene.fogStart = 180.0;
     scene.fogEnd = 380.0;
     scene.clearColor = new Color3(0.2, 0.6, 0.8);
 
-    // --- 光源の設定 ---
+    // --- Light setup ---
     const hemiLight = new HemisphericLight('hemiLight', new Vector3(0, 1, 0), scene);
     hemiLight.intensity = 1.3;
     hemiLight.diffuse = new Color3(0.7, 0.9, 1.0);
@@ -52,7 +52,7 @@ export function setupEnvironment(scene) {
     sunLight.specular = new Color3(1.0, 1.0, 1.0);
     sunLight.groundColor = new Color3(0.0, 0.0, 0.0);
 
-    // --- 海底の設定 ---
+    // --- Seabed setup ---
     const ground = MeshBuilder.CreateGround('ground', { width: 500, height: 500, subdivisions: 80 }, scene);
     ground.position.y = -35;
 
@@ -73,7 +73,7 @@ export function setupEnvironment(scene) {
     groundMat.diffuseColor = new Color3(0.4, 0.4, 0.4);
     ground.material = groundMat;
 
-    // --- 水面の設定 ---
+    // --- Water surface setup ---
     const water = MeshBuilder.CreateGround('water', { width: 500, height: 500, subdivisions: 64 }, scene);
     water.position.y = 0;
     const waterMat = new StandardMaterial('waterMat', scene);

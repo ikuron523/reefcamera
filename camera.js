@@ -4,31 +4,29 @@ export function setupCamera(scene) {
     const camera = new FreeCamera('camera1', new Vector3(0, -15, -10), scene);
     camera.setTarget(Vector3.Zero());
 
-    // カメラをゆっくり自動で動かすロジック（半径10の円を描くように回転）
+    // Rotate the camera slowly to create a circular panning effect
     let alpha = 0;
     scene.onBeforeRenderObservable.add(() => {
         alpha += 0.0005;
 
-        // 半径10の円運動
+        // Circular movement
         camera.position.x = Math.cos(alpha) * 100;
         camera.position.z = Math.sin(alpha) * 100;
-        // 深さ-15を基準に、Y軸にも少し揺らして浮遊感を出す
+        // Add a slight vertical bobbing effect for a floating sensation
         camera.position.y = -15 + Math.sin(alpha * 0.5) * 3;
 
         const targetX = 0;
         const targetZ = 0;
         
-        // Y軸のベース位置（-15）からの変位
+        // Vertical displacement from the base y-position
         const yOffset = Math.sin(alpha * 0.5) * 3;
         
-        // y軸位置（変位）に比例して視線をわずかに上下に傾ける
-        // 高い位置（yOffsetがプラス）にいるときは少し上を、低い位置にいるときは少し下を向く
-        // 水面や地面ばかりが映らないよう、係数（1.5）でわずかな傾きに抑えています
+        // Slightly tilt the camera up or down proportionally to the vertical displacement
+        // Looks slightly upwards when high, and downwards when low
+        // Coefficient limits the tilt to prevent capturing only the surface or the ground
         const tilt = yOffset * 1.5; 
         const targetY = camera.position.y + tilt;
         camera.setTarget(new Vector3(targetX, targetY, targetZ));
-
-
     });
 
     return camera;
