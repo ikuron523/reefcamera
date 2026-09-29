@@ -40,7 +40,7 @@ const soundBtn = document.getElementById('soundToggle');
 soundBtn.innerText = '🔇 Sound OFF';
 
 // Use HTML5 Audio for streaming BGM with low memory consumption
-const bgm = new Audio("/reef_camera_bgm.mp3");
+const bgm = new Audio("./reef_camera_bgm.mp3");
 bgm.loop = true;
 
 soundBtn.addEventListener('click', () => {
