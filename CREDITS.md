@@ -76,11 +76,6 @@ This project uses various 3D models (`.glb` files) kindly provided by creators u
 - **License:** CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 - **Source:** [Sketchfab](https://sketchfab.com/3d-models/school-of-herring-9805dabc1d3f4cc1a09367fb5afad980)
 
-### Sea Snail Shell
-- **File:** `sea_snail_shell.glb`
-- **Author:** Thomas Flynn (https://sketchfab.com/nebulousflynn)
-- **License:** CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-- **Source:** [Sketchfab](https://sketchfab.com/3d-models/sea-snail-shell-6515f625857041ad87bb6e2e5e5f6206)
 
 ### Snail shell
 - **File:** `snail_shell.glb`

@@ -1,37 +1,6 @@
 import { SceneLoader, TransformNode, Vector3 } from '@babylonjs/core';
 
 export function loadShellfishes(scene) {
-    // Randomly distribute shells
-    const numShells = Math.floor(Math.random() * 5) + 20;
-
-    for (let i = 0; i < numShells; i++) {
-        // Random horizontal placement
-        const posX = -200 + Math.random() * 400;
-        const posZ = -200 + Math.random() * 400;
-
-        // Random vertical placement near the seabed
-        const posY = -41 + Math.random() * 3;
-
-        SceneLoader.ImportMeshAsync("", "./", "sea_snail_shell.glb", scene).then((result) => {
-            const rootNode = result.meshes[0];
-
-            // Clear rotationQuaternion to allow euler angles to be used
-            if (rootNode.rotationQuaternion) {
-                rootNode.rotationQuaternion = null;
-            }
-
-            const wrapper = new TransformNode("shellWrapper_" + i, scene);
-            rootNode.setParent(wrapper);
-
-            wrapper.scaling = new Vector3(0.1, 0.1, 0.1);
-            wrapper.position = new Vector3(posX, posY, posZ);
-
-            // Randomize orientation along all axes
-            wrapper.rotation.x = Math.random() * Math.PI * 2;
-            wrapper.rotation.y = Math.random() * Math.PI * 2;
-            wrapper.rotation.z = Math.random() * Math.PI * 2;
-        });
-    }
 
     // --- Setup for snail_shell.glb ---
     const numSnailShells = Math.floor(Math.random() * 3) + 10;

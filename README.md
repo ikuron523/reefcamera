@@ -4,6 +4,10 @@
 
 This is a purely observational experience—there are no complex user interactions or controls. Just sit back, toggle the background music (BGM) on or off, and enjoy the view!
 
+## github pages
+
+You can view it on [github pages](https://ikuron523.github.io/reefcamera/) with your web browser. When you first open it, it may take some time to load the 3D models. The page is designed to be viewed on a large screen with a powerful CPU and GPU, such as latest desktop computers. Please be patient while it loads.
+
 ## Features
 - **Relaxing 3D Environment:** A fully rendered underwater scene powered by Babylon.js.
 - **Automated Camera:** The camera slowly pans and bobs through the water automatically, giving you a dynamic and cinematic view of the marine life.
